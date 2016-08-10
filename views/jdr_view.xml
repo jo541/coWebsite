@@ -1,0 +1,122 @@
+<openerp>
+    <data>
+
+        <!-- Start Personage -->
+        <record id="jdr_perso_form_view" model="ir.ui.view">
+            <field name="name">Personage</field>
+            <field name="model">jdr.perso</field>
+            <field name="arch" type="xml">
+                <form string="Personages">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="race_id"/>
+                            <field name="old_race_id" invisible="1"/>
+                            <field name="stat_ids"/>
+                            <field name="fo"/>
+                            <field name="int"/>
+                            <field name="cha"/>
+                            <field name="con"/>
+                            <field name="dex"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="jdr_perso_action" model="ir.actions.act_window">
+            <field name="name">Personages</field>
+            <field name="res_model">jdr.perso</field>
+            <field name="view_type">form</field>
+        </record>
+        <!-- End Personage -->
+
+        <!-- Start Race -->
+        <record id="jdr_race_form_view" model="ir.ui.view">
+            <field name="name">Races</field>
+            <field name="model">jdr.race</field>
+            <field name="arch" type="xml">
+                <form string="Race">
+                    <sheet>
+                        <field name="image" widget='image' class="oe_avatar"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="start_age"/>
+                                <field name="life_expectancy"/>
+                            </group>
+                            <group>
+                                <field name="min_size"/>
+                                <field name="max_size"/>
+                            </group>
+                            <group>
+                                <field name="min_weight"/>
+                                <field name="max_weight"/>
+                            </group>
+                        </group>
+                        <separation string="Stats" />
+                        <field name="stats">
+                            <form>
+                                <sheet>
+                                    <group>
+                                        <field name="carac_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="number"/>
+                                    </group>
+                                </sheet>
+                            </form>
+                            <tree>
+                                <field name="carac_id"/>
+                                <field name="number"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="jdr_race_action" model="ir.actions.act_window">
+            <field name="name">Races</field>
+            <field name="res_model">jdr.race</field>
+            <field name="view_type">form</field>
+        </record>
+        <!-- End Race -->
+
+        <!-- Start Stat -->
+        <record id="jdr_stats_form_view" model="ir.ui.view">
+            <field name="name">Stats</field>
+            <field name="model">jdr.stats</field>
+            <field name="arch" type="xml">
+                <form string="Stats">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="short_name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="jdr_stats_action" model="ir.actions.act_window">
+            <field name="name">Stats</field>
+            <field name="res_model">jdr.stats</field>
+            <field name="view_type">form</field>
+        </record>
+        <!-- End stat -->
+
+        <!-- Start Menu -->
+        <menuitem id="jdr_menu" name="JDR CO" sequence="1"/>
+        <menuitem id="jdr_under_menu" name="JDR CO" parent="jdr.jdr_menu" sequence="1"/>
+        <menuitem id="jdr_perso_menu" name="Personages" parent="jdr.jdr_under_menu" sequence="1" action="jdr.jdr_perso_action"/>
+        <menuitem id="jdr_race_menu" name="Races" parent="jdr.jdr_under_menu" sequence="2" action="jdr.jdr_race_action"/>
+        <menuitem id="jdr_stats_menu" name="Stats" parent="jdr.jdr_under_menu" sequence="2" action="jdr.jdr_stats_action"/>
+        <!-- End Menu -->
+
+    </data>
+</openerp>
